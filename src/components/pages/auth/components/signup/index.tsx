@@ -9,6 +9,7 @@ import logo from '../../../../../assets/images/logo.svg'
 import {useAppDispatch, useAppSelector} from "../../../../../store/hooks";
 import {SignupApi} from "../../../../../api/signup.api";
 import {API_URLS} from "../../../../../constants/api";
+import {setMessage} from "../../../../../store/reducers/loading/actions";
 
 const {SignDiv, InputBlock, InputBorder, Logo, ButtonBlock, SwitchBlock} = styles;
 
@@ -19,7 +20,8 @@ export const Signup = (props: SignupProps): JSX.Element => {
 
     const registerHandler =async  (values: typeof initialValues) => {
          try {
-            await postRequest(API_URLS.signup, JSON.stringify({...values}))
+            const data  = await postRequest(API_URLS.signup, JSON.stringify({...values}))
+              dispatch(setMessage(data.message))
          } catch (e) {}
     }
 

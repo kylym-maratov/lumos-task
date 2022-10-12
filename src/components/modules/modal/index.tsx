@@ -5,11 +5,13 @@ import {useAppSelector} from "../../../store/hooks";
 
 export const Modal = () => {
     const [showModal, setShowModal] = useState<boolean>(false)
-    const {error} = useAppSelector(state => state.loadingReducer)
+    const {error, message} = useAppSelector(state => state.loadingReducer)
 
     useEffect(() => {
-        if (error) {
+        if (error || message) {
             setShowModal(true)
+
+            console.log(error)
 
             const timeout = setTimeout(() => {
                 setShowModal(false)
@@ -17,14 +19,14 @@ export const Modal = () => {
 
             return () => clearTimeout(timeout)
         }
-    }, [error])
+    }, [error, message])
 
     return (
         <ModalBlock
             onClick={() => setShowModal(false)}
             error={error ? true : false}
             showModal={showModal}>
-            {error}
+            {error || message}
         </ModalBlock>
     );
 };

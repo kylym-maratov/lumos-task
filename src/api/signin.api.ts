@@ -4,14 +4,17 @@ import { setError, setLoading } from '../store/reducers/loading/actions'
 
 export const SigninApi = (dispatch: any) => {
 
-    const postRequest = useCallback(async (url: string, body: any, headers = {}) => {
-        headers = {
-            "Content-type": "application/json"
+    const postRequest = useCallback(async (url: string, body: any) => {
+
+        const  config = {
+            headers: {
+                "Content-Type": "application/json"
+            }
         }
         try {
             dispatch(setLoading(true))
             dispatch(setError(''))
-            const data = await axios.post(url, body, headers )
+            const {data} = await axios.post(url, body, config)
             dispatch(setLoading(false))
             return data
         } catch (e) {

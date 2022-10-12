@@ -4,7 +4,8 @@ import { InitialState } from "./types";
 
 const initialState: InitialState = {
     loading: false,
-    error: ''
+    error: '',
+    message: ''
 }
 
 export default function loadingReducer(state = initialState, action: any) {
@@ -18,6 +19,11 @@ export default function loadingReducer(state = initialState, action: any) {
             return {
                 ...state,
                 error: action.payload
+            }
+        case loadingActions.SET_MESSAGE:
+            return {
+                ...state,
+                message: action.payload
             }
         default:
             return state

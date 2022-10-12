@@ -4,14 +4,20 @@ import { useAppSelector } from '../store/hooks'
 import { AuthPage } from '../components/pages/auth'
 import { HomePage } from '../components/pages/home'
 import {ProfilePage} from "../components/pages/profile";
+import {AuthUtil} from "./auth";
 
 
 export const useRoutes = (): JSX.Element => {
     const authpages = AuthPage()
     const token = !!useAppSelector(state => state.userReducer.token)
+    const {login, userStorageName} = AuthUtil()
 
     useEffect(() => {
+        let user = JSON.parse(localStorage.getItem(userStorageName) || '{}')
 
+        if (user) {
+            login(user.username, user.token)
+        }
     }, [token])
 
     if (token) {
