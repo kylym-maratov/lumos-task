@@ -31,10 +31,7 @@ export const Signup = (props: SignupProps): JSX.Element => {
             <Formik
                 initialValues={initialValues}
                 validationSchema={validationSchema}
-                onSubmit={(values, {resetForm}) => {
-                    registerHandler(values)
-                    resetForm()
-                }}
+                onSubmit={(values, {resetForm}) => registerHandler(values)}
             >
                 {({errors}) => (
                     <Form>

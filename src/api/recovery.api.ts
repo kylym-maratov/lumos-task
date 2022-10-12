@@ -1,19 +1,17 @@
-import axios from "axios"
-import { useCallback } from "react"
-import {setError, setLoading} from "../store/reducers/loading/actions"
+import { useCallback } from 'react'
+import axios from 'axios'
+import { setError, setLoading } from '../store/reducers/loading/actions'
 
-export const SignupApi = (dispatch: any) => {
+export const RecoveryApi = (dispatch: any) => {
 
     const postRequest = useCallback(async (url: string, body: any, headers = {}) => {
-
         headers = {
-            "Content-Type": "application/json"
+            "Content-type": "application/json"
         }
-
         try {
             dispatch(setLoading(true))
             dispatch(setError(''))
-            const { data } = await axios.post(url, body, headers)
+            const data = await axios.post(url, body, headers )
             dispatch(setLoading(false))
             return data
         } catch (e) {
@@ -22,6 +20,5 @@ export const SignupApi = (dispatch: any) => {
         }
     }, [])
 
-
-    return {  postRequest }
+    return { postRequest }
 }

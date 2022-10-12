@@ -79,7 +79,11 @@ const ButtonBlock = styled.div`
     font-weight: bold;
     font-size: 14px;
     cursor: pointer;
+    transition:  all .5s;
   }
+
+  button:disabled {background: gray;}
+   
 `
 
 const SwitchBlock = styled.div`
