@@ -1,6 +1,6 @@
 import axios from "axios"
 import { useCallback } from "react"
-import { setError, setLoading } from "../store/reducers/loading/actions"
+import { setError } from "../store/reducers/loading/actions"
 
 export const SignupApi = (dispatch: any) => {
 

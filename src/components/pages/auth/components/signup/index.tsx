@@ -1,5 +1,5 @@
 import { Formik, Field, Form } from 'formik'
-import React, { useState } from 'react'
+import React from 'react'
 import {Link} from 'react-router-dom'
 import { SignupProps } from './types';
 import {initialValues, validationSchema} from './helper'
@@ -19,7 +19,7 @@ export const Signup = (props: SignupProps): JSX.Element => {
 
     const registerHandler =async  (values: typeof initialValues) => {
          try {
-             const data = await postRequest(API_URLS.signup, JSON.stringify({...values}))
+            await postRequest(API_URLS.signup, JSON.stringify({...values}))
          } catch (e) {}
     }
 
