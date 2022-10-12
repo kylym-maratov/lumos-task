@@ -1,19 +1,35 @@
-import React from 'react';
-import {HeaderBlock} from './styles'
+import React, {useEffect, useRef} from 'react';
+import {HeaderBlock, HeaderMenuBlock} from './styles'
 import logo from '../../../assets/images/logo.svg'
+import {Link, useLocation} from 'react-router-dom'
+import {AuthUtil} from "../../../utils/auth";
 
 export const Header = () => {
+    const {logout} = AuthUtil()
+    const location = useLocation()
+    const menuRef = useRef<HTMLDivElement>(null)
+
+    useEffect(() => {
+
+    }, [location.pathname])
+
     return (
         <HeaderBlock>
-            <div>
-                <div>
-                    <img src={logo}></img>
+            <HeaderMenuBlock active={true}>
+                <div id="logo">
+                    <Link to="/"><img src={logo}></img></Link>
                 </div>
-                <div>
-                    <a>dsad</a>
+                <div id="menu" ref={menuRef}>
+                    <Link  to="/"><li id="active">Home</li></Link>
+                    <Link  to="/projects"><li>Projects</li></Link>
+                    <Link  to="/colleagues"><li>Colleagues</li></Link>
+                    <Link  to="/collaborators"><li>Collaborators</li></Link>
+                    <Link  to="/myprofile"><li>My Profile</li></Link>
                 </div>
-            </div>
-            <div>User</div>
+            </HeaderMenuBlock>
+            <button onClick={() => logout()}>
+                Logout
+            </button>
         </HeaderBlock>
     );
 };

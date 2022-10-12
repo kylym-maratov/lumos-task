@@ -1,7 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {ModalBlock} from './styles'
 import {useAppSelector} from "../../../store/hooks";
-
+import {IoMdNotificationsOutline} from "react-icons/io"
+import {BiError} from "react-icons/bi"
 
 export const Modal = () => {
     const [showModal, setShowModal] = useState<boolean>(false)
@@ -10,8 +11,6 @@ export const Modal = () => {
     useEffect(() => {
         if (error || message) {
             setShowModal(true)
-
-            console.log(error)
 
             const timeout = setTimeout(() => {
                 setShowModal(false)
@@ -26,6 +25,7 @@ export const Modal = () => {
             onClick={() => setShowModal(false)}
             error={error ? true : false}
             showModal={showModal}>
+            <div>{error ? <BiError />:<IoMdNotificationsOutline />}</div>
             {error || message}
         </ModalBlock>
     );
