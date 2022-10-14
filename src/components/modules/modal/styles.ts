@@ -21,6 +21,7 @@ export const ModalBlock = styled.div<ModalBlockProps>`
   bottom: ${props => props.showModal ? '20px' : '-500px'};
   transition: all .3s;
   cursor: pointer;
+  background: white;
   
   div {
     position: relative;

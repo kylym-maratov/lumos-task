@@ -9,7 +9,7 @@ import {AuthUtil} from "./auth";
 
 export const useRoutes = (): JSX.Element => {
     const authpages = AuthPage()
-    const token = !!useAppSelector(state => state.userReducer.token)
+    const {username, token} = useAppSelector(state => state.userReducer)
     const {login, userStorageName} = AuthUtil()
 
     useEffect(() => {
@@ -20,7 +20,13 @@ export const useRoutes = (): JSX.Element => {
         }
     }, [token])
 
-    if (token) {
+    useEffect(() => {
+        if (username && token) {
+            login(username, token)
+        }
+    }, [username, token])
+
+    if (!!token) {
         return (
             <Routes>
                 <Route path="/" element={<HomePage />} />

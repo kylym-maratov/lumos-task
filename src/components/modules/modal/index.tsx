@@ -1,15 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import {ModalBlock} from './styles'
-import {useAppSelector} from "../../../store/hooks";
+import {useAppDispatch, useAppSelector} from "../../../store/hooks";
 import {IoMdNotificationsOutline} from "react-icons/io"
 import {BiError} from "react-icons/bi"
+import {setFailedMessage, setSuccessMesssage} from "../../../store/reducers/loading/actions";
 
 export const Modal = () => {
     const [showModal, setShowModal] = useState<boolean>(false)
-    const {error, message} = useAppSelector(state => state.loadingReducer)
+    const {successMessage, failedMessage} = useAppSelector(state => state.loadingReducer)
 
     useEffect(() => {
-        if (error || message) {
+
+        if (successMessage || failedMessage) {
             setShowModal(true)
 
             const timeout = setTimeout(() => {
@@ -18,15 +20,15 @@ export const Modal = () => {
 
             return () => clearTimeout(timeout)
         }
-    }, [error, message])
+    }, [successMessage, failedMessage])
 
     return (
         <ModalBlock
             onClick={() => setShowModal(false)}
-            error={error ? true : false}
+            error={failedMessage ? true : false}
             showModal={showModal}>
-            <div>{error ? <BiError />:<IoMdNotificationsOutline />}</div>
-            {error || message}
+            <div>{failedMessage ? <BiError />:<IoMdNotificationsOutline />}</div>
+            {failedMessage || successMessage}
         </ModalBlock>
     );
 };

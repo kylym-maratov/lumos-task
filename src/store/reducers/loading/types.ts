@@ -1,7 +1,7 @@
 
 
 export interface InitialState {
-    loading: boolean,
-    error: string;
-    message: string;
+    loading: boolean;
+    successMessage: string;
+    failedMessage: string;
 }

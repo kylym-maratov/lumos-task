@@ -1,22 +1,23 @@
 import { createStore, combineReducers, applyMiddleware} from 'redux';
 import createSagaMiddleware from 'redux-saga'
-import loadingReducer from './reducers/loading';
-import userReducer from './reducers/user';
-import {mySaga} from "./sagas";
-
+import rootUserReducer from './reducers/user';
+import rootSagaWatcher from './saga/index'
+import loadingReducer from "./reducers/loading";
+import {composeWithDevTools} from "redux-devtools-extension";
 const sagaMiddleware = createSagaMiddleware()
 
+const composeEnhancers = composeWithDevTools({});
+
 const rootReducer = combineReducers({
-    userReducer: userReducer,
-    loadingReducer: loadingReducer
+   ...rootUserReducer,
+   loadingReducer
 })
 
-export const store = createStore(rootReducer, applyMiddleware(sagaMiddleware))
+export const store = createStore(rootReducer, composeEnhancers(applyMiddleware(sagaMiddleware)))
 
 export type RootState = ReturnType<typeof store.getState>
 
 export type AppDispatch = typeof store.dispatch
 
-
-sagaMiddleware.run(mySaga)
+sagaMiddleware.run(rootSagaWatcher)
 

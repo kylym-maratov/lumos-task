@@ -7,26 +7,14 @@ import {AiOutlineEye, AiOutlineUser, AiOutlineEyeInvisible} from "react-icons/ai
 import {Link} from "react-router-dom";
 import styles from '../../styles'
 import {useAppDispatch, useAppSelector} from "../../../../../store/hooks";
-import {API_URLS} from "../../../../../constants/api";
-import {SigninApi} from "../../../../../api/signin.api";
-import {AuthUtil} from "../../../../../utils/auth";
+import {setFetchSigninUser} from "../../../../../store/reducers/user/fetching/actions";
 
 const {Logo, SignDiv, InputBlock, InputBorder , SwitchBlock , ButtonBlock} = styles
 
 export const Signin = (props: SigninProps): JSX.Element => {
     const [showPassword, setShowPassword] = useState<boolean>(false)
-    const {loading } = useAppSelector(state => state.loadingReducer)
+    const {loading} = useAppSelector(state => state.loadingReducer)
     const dispatch = useAppDispatch()
-    const {postRequest} = SigninApi(dispatch)
-    const {login} = AuthUtil()
-
-    const loginHandler = async  (values: typeof initialValues) => {
-        try {
-            const data = await postRequest(API_URLS.signin, JSON.stringify({...values}))
-
-            login(data.data.userData.username, data.data.token)
-        } catch (e) {}
-    }
 
     return (
         <SignDiv>
@@ -36,7 +24,7 @@ export const Signin = (props: SigninProps): JSX.Element => {
             <Formik
                 initialValues={initialValues}
                 validationSchema={validationSchema}
-                onSubmit={(values, {resetForm}) => loginHandler(values)}
+                onSubmit={(values, {resetForm}) => {dispatch(setFetchSigninUser(({...values})))}}
             >
                 {({errors}) => (
                     <Form>

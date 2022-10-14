@@ -6,7 +6,6 @@ import {AiOutlineEye, AiOutlineUser, AiOutlineEyeInvisible} from "react-icons/ai
 import {Link} from "react-router-dom";
 import styles from '../../styles'
 import {API_URLS} from "../../../../../constants/api";
-import {RecoveryApi} from "../../../../../api/recovery.api";
 import {useAppDispatch} from "../../../../../store/hooks";
 
 const {Logo, SignDiv, InputBlock, InputBorder , SwitchBlock , ButtonBlock} = styles
@@ -14,13 +13,8 @@ const {Logo, SignDiv, InputBlock, InputBorder , SwitchBlock , ButtonBlock} = sty
 export const Recovery = (): JSX.Element => {
     const [showPassword, setShowPassword] = useState<boolean>(false)
     const dispatch = useAppDispatch()
-    const {postRequest} = RecoveryApi(dispatch)
 
-    const recoveryHandler =async  (values: typeof initialValues) => {
-        try {
-            await postRequest('', JSON.stringify({...values}))
-        } catch (e) {}
-    }
+
     return (
         <SignDiv>
             <Logo>
@@ -29,7 +23,7 @@ export const Recovery = (): JSX.Element => {
             <Formik
                 initialValues={initialValues}
                 validationSchema={validationSchema}
-                onSubmit={(values, {resetForm}) => recoveryHandler(values)}
+                onSubmit={(values, {resetForm}) => {}}
             >
                 {({errors}) => (
                     <Form>

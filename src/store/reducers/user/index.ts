@@ -1,12 +1,13 @@
 import { InitialState } from "./types"
 import { userActions } from "./actions"
+import userFetchReducer from "./fetching";
 
 const initialState: InitialState = {
     username: '',
-    token: ''
+    token: '',
 }
 
-export default function userReducer(state = initialState, action: any) {
+function userReducer(state = initialState, action: any) {
     switch (action.type) {
         case userActions.SET_USERNAME:
             return {
@@ -22,3 +23,5 @@ export default function userReducer(state = initialState, action: any) {
             return state
     }
 }
+
+export default {userReducer, userFetchReducer}

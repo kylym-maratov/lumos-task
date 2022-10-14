@@ -7,9 +7,7 @@ import styles from '../../styles';
 import {AiOutlineEye, AiOutlineEyeInvisible, AiOutlineUser} from 'react-icons/ai'
 import logo from '../../../../../assets/images/logo.svg'
 import {useAppDispatch, useAppSelector} from "../../../../../store/hooks";
-import {SignupApi} from "../../../../../api/signup.api";
-import {API_URLS} from "../../../../../constants/api";
-import {setMessage} from "../../../../../store/reducers/loading/actions";
+import {setFetchSignupUser} from "../../../../../store/reducers/user/fetching/actions";
 
 const {SignDiv, InputBlock, InputBorder, Logo, ButtonBlock, SwitchBlock} = styles;
 
@@ -17,14 +15,6 @@ export const Signup = (props: SignupProps): JSX.Element => {
     const [showPassword, setShowPassword] = useState<boolean>(false)
     const dispatch = useAppDispatch()
     const {loading} = useAppSelector(state => state.loadingReducer)
-    const {postRequest} = SignupApi(dispatch)
-
-    const registerHandler =async  (values: typeof initialValues) => {
-         try {
-            const data  = await postRequest(API_URLS.signup, JSON.stringify({...values}))
-              dispatch(setMessage(data.message))
-         } catch (e) {}
-    }
 
     return (
         <SignDiv>
@@ -34,7 +24,7 @@ export const Signup = (props: SignupProps): JSX.Element => {
             <Formik
                 initialValues={initialValues}
                 validationSchema={validationSchema}
-                onSubmit={(values, {resetForm}) => registerHandler(values)}
+                onSubmit={(values, {resetForm}) => {dispatch(setFetchSignupUser({...values}))}}
             >
                 {({errors}) => (
                     <Form>

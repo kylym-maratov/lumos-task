@@ -1,29 +1,29 @@
-import { loadingActions } from "./actions";
-import { InitialState } from "./types";
+import {InitialState} from "./types";
+import {loadingActions} from "./actions";
 
 
 const initialState: InitialState = {
     loading: false,
-    error: '',
-    message: ''
+    successMessage: '',
+    failedMessage: ''
 }
 
-export default function loadingReducer(state = initialState, action: any) {
+export default  function loadingReducer(state = initialState, action: any) {
     switch (action.type) {
         case loadingActions.SET_LOADING:
-            return {
+            return  {
                 ...state,
                 loading: action.payload
             }
-        case loadingActions.SET_ERROR:
-            return {
+        case loadingActions.SET_SUCCESS_MESSAGE:
+            return  {
                 ...state,
-                error: action.payload
+                successMessage: action.payload
             }
-        case loadingActions.SET_MESSAGE:
+        case loadingActions.SET_FAILED_MESSAGE:
             return {
                 ...state,
-                message: action.payload
+                failedMessage: action.payload
             }
         default:
             return state
