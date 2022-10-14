@@ -1,10 +1,10 @@
 import { Formik, Field, Form } from 'formik'
-import React from 'react'
+import React, {useState} from 'react'
 import {Link} from 'react-router-dom'
 import { SignupProps } from './types';
 import {initialValues, validationSchema} from './helper'
 import styles from '../../styles';
-import {AiOutlineEye, AiOutlineUser} from 'react-icons/ai'
+import {AiOutlineEye, AiOutlineEyeInvisible, AiOutlineUser} from 'react-icons/ai'
 import logo from '../../../../../assets/images/logo.svg'
 import {useAppDispatch, useAppSelector} from "../../../../../store/hooks";
 import {SignupApi} from "../../../../../api/signup.api";
@@ -14,6 +14,7 @@ import {setMessage} from "../../../../../store/reducers/loading/actions";
 const {SignDiv, InputBlock, InputBorder, Logo, ButtonBlock, SwitchBlock} = styles;
 
 export const Signup = (props: SignupProps): JSX.Element => {
+    const [showPassword, setShowPassword] = useState<boolean>(false)
     const dispatch = useAppDispatch()
     const {loading} = useAppSelector(state => state.loadingReducer)
     const {postRequest} = SignupApi(dispatch)
@@ -54,12 +55,14 @@ export const Signup = (props: SignupProps): JSX.Element => {
                             <label htmlFor="password">Password</label>
                             <InputBorder>
                                 <Field
-                                    type="password"
+                                    type={showPassword ? 'text' : 'password'}
                                     id="password"
                                     name="password"
                                     placeholder="Write your password"
                                 />
-                                <AiOutlineEye />
+                                <div onClick={() =>setShowPassword(showPassword ? false : true)}>
+                                    {showPassword ? <AiOutlineEyeInvisible />  :  <AiOutlineEye  />}
+                                </div>
                             </InputBorder>
                             <span>{errors.password}</span>
                         </InputBlock>
