@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import background from '../../../assets/images/background.jpg'
 
 
 const SignDiv = styled.div`
@@ -93,5 +94,6 @@ const SwitchBlock = styled.div`
   font-size: 14px;
   padding: 5px 0px;
 `
+
 
 export default {SignDiv, InputBlock, InputBorder, Logo, ButtonBlock, SwitchBlock}
