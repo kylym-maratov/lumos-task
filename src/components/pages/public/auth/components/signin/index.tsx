@@ -1,19 +1,20 @@
 import { Formik, Field, Form } from 'formik'
 import React, { useState } from 'react'
-import logo from "../../../../../assets/images/logo.svg";
-import {initialValues, validationSchema} from "./helper";
+import { SigninProps } from './types';
+import logo from "../../../../../../assets/images/logo.svg";
+import {initialValues, validationSchema} from "../signup/helper";
 import {AiOutlineEye, AiOutlineUser, AiOutlineEyeInvisible} from "react-icons/ai";
 import {Link} from "react-router-dom";
 import styles from '../../styles'
-import {API_URLS} from "../../../../../constants/api";
-import {useAppDispatch} from "../../../../../store/hooks";
+import {useAppDispatch, useAppSelector} from "../../../../../../store/hooks";
+import {setFetchSigninUser} from "../../../../../../store/reducers/user/fetching/actions";
 
 const {Logo, SignDiv, InputBlock, InputBorder , SwitchBlock , ButtonBlock} = styles
 
-export const Recovery = (): JSX.Element => {
+export const Signin = (props: SigninProps): JSX.Element => {
     const [showPassword, setShowPassword] = useState<boolean>(false)
+    const {loading} = useAppSelector(state => state.loadingReducer)
     const dispatch = useAppDispatch()
-
 
     return (
         <SignDiv>
@@ -23,7 +24,7 @@ export const Recovery = (): JSX.Element => {
             <Formik
                 initialValues={initialValues}
                 validationSchema={validationSchema}
-                onSubmit={(values, {resetForm}) => {}}
+                onSubmit={(values, {resetForm}) => {dispatch(setFetchSigninUser(({...values})))}}
             >
                 {({errors}) => (
                     <Form>
@@ -36,12 +37,12 @@ export const Recovery = (): JSX.Element => {
                                     name="username"
                                     placeholder="Write your username"
                                 />
-                                <AiOutlineUser />
+                                    <AiOutlineUser />
                             </InputBorder>
                             <span>{errors.username}</span>
                         </InputBlock>
                         <InputBlock>
-                            <label htmlFor="password">New password</label>
+                            <label htmlFor="password">Password</label>
                             <InputBorder>
                                 <Field
                                     type={showPassword ? "text" : "password"}
@@ -56,12 +57,13 @@ export const Recovery = (): JSX.Element => {
                                 </div>
                             </InputBorder>
                             <span>{errors.password}</span>
+                            <div><Link to="/recovery-password">Forgot your password?</Link></div>
                         </InputBlock>
                         <ButtonBlock>
-                            <button type="submit">Recovery</button>
+                            <button type="submit" disabled={loading}>Signin</button>
                         </ButtonBlock>
                         <SwitchBlock>
-                            Back to main<Link to="/signin">/Signin</Link>
+                            You don't have account?<Link to="/signup">/Signup</Link>
                         </SwitchBlock>
                     </Form>
                 )}

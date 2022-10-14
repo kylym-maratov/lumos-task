@@ -5,9 +5,9 @@ import { SignupProps } from './types';
 import {initialValues, validationSchema} from './helper'
 import styles from '../../styles';
 import {AiOutlineEye, AiOutlineEyeInvisible, AiOutlineUser} from 'react-icons/ai'
-import logo from '../../../../../assets/images/logo.svg'
-import {useAppDispatch, useAppSelector} from "../../../../../store/hooks";
-import {setFetchSignupUser} from "../../../../../store/reducers/user/fetching/actions";
+import logo from '../../../../../../assets/images/logo.svg'
+import {useAppDispatch, useAppSelector} from "../../../../../../store/hooks";
+import {setFetchSignupUser} from "../../../../../../store/reducers/user/fetching/actions";
 
 const {SignDiv, InputBlock, InputBorder, Logo, ButtonBlock, SwitchBlock} = styles;
 

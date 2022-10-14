@@ -1,11 +1,10 @@
 import React, {useEffect} from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { useAppSelector } from '../store/hooks'
-import { AuthPage } from '../components/pages/auth'
-import { HomePage } from '../components/pages/home'
-import {ProfilePage} from "../components/pages/profile";
+import { AuthPage } from '../components/pages/public/auth'
 import {AuthUtil} from "./auth";
-
+import PrivateRoutes from "../components/pages/private";
+import PublicRoutes from "../components/pages/public";
 
 export const useRoutes = (): JSX.Element => {
     const authpages = AuthPage()
@@ -26,22 +25,7 @@ export const useRoutes = (): JSX.Element => {
         }
     }, [username, token])
 
-    if (!!token) {
-        return (
-            <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/profile" element={<ProfilePage />} />
-                <Route path="*" element={<Navigate to="/" />} />
-            </Routes>
-        )
-    }
+    if (!!token) return ( <PrivateRoutes />)
 
-    return (
-        <Routes>
-            <Route path="/signin" element={authpages.signin} />
-            <Route path="/signup" element={authpages.signup} />
-            <Route path="/recovery-password" element={authpages.recovery} />
-            <Route path="*" element={<Navigate to="/signin" />} />
-        </Routes>
-    )
+    return (<PublicRoutes />)
 }

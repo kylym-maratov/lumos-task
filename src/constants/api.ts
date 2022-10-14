@@ -4,7 +4,7 @@
 export const API_URLS = {
     signup: '/auth/register',
     signin: '/auth/login',
-    posts: '/posts',
+    posts: '/post',
     userInfo: '/userinfo',
     changePassword: '/change-password',
     profile: '/profile',

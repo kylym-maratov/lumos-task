@@ -3,7 +3,6 @@ import {ModalBlock} from './styles'
 import {useAppDispatch, useAppSelector} from "../../../store/hooks";
 import {IoMdNotificationsOutline} from "react-icons/io"
 import {BiError} from "react-icons/bi"
-import {setFailedMessage, setSuccessMesssage} from "../../../store/reducers/loading/actions";
 
 export const Modal = () => {
     const [showModal, setShowModal] = useState<boolean>(false)
