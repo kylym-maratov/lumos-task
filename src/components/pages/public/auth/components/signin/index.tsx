@@ -1,17 +1,16 @@
 import { Formik, Field, Form } from 'formik'
 import React, { useState } from 'react'
-import { SigninProps } from './types';
 import logo from "../../../../../../assets/images/logo.svg";
 import {initialValues, validationSchema} from "../signup/helper";
 import {AiOutlineEye, AiOutlineUser, AiOutlineEyeInvisible} from "react-icons/ai";
-import {Link} from "react-router-dom";
-import styles from '../../styles'
+import {Link} from "react-router-dom"
 import {useAppDispatch, useAppSelector} from "../../../../../../store/hooks";
 import {setFetchSigninUser} from "../../../../../../store/reducers/user/fetching/actions";
+import styles from '../../styles'
 
 const {Logo, SignDiv, InputBlock, InputBorder , SwitchBlock , ButtonBlock} = styles
 
-export const Signin = (props: SigninProps): JSX.Element => {
+export const Signin: React.FC = () => {
     const [showPassword, setShowPassword] = useState<boolean>(false)
     const {loading} = useAppSelector(state => state.loadingReducer)
     const dispatch = useAppDispatch()
@@ -50,7 +49,7 @@ export const Signin = (props: SigninProps): JSX.Element => {
                                     name="password"
                                     placeholder="Write your password"
                                 />
-                                <div onClick={() => setShowPassword(showPassword ? false : true)}>
+                                <div onClick={() => setShowPassword(!showPassword)}>
                                     {
                                         showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye/>
                                     }

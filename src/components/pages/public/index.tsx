@@ -9,6 +9,7 @@ export  default function  PublicRoutes (): JSX.Element {
         <Routes>
             <Route path="/signin" element={authPage.signin} />
             <Route path="/signup" element={authPage.signup} />
+            <Route path="/recovery-password" element={authPage.recovery} />
             <Route path="*" element={<Navigate to="/signin" />} />
         </Routes>
     );

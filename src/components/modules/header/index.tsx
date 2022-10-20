@@ -1,17 +1,15 @@
-import React, {useEffect, useRef} from 'react';
+import React, {   useRef} from 'react';
 import {HeaderBlock, HeaderMenuBlock} from './styles'
 import logo from '../../../assets/images/logo.svg'
 import {Link, useLocation} from 'react-router-dom'
-import {AuthUtil} from "../../../utils/auth";
+import {AuthUtil} from "../../../services/auth.service";
 
 export const Header = () => {
     const {logout} = AuthUtil()
     const location = useLocation()
     const menuRef = useRef<HTMLDivElement>(null)
 
-    useEffect(() => {
 
-    }, [location.pathname])
 
     return (
         <HeaderBlock>
@@ -21,7 +19,7 @@ export const Header = () => {
                 </div>
                 <div id="menu" ref={menuRef}>
                     <Link  to="/"><li id="active">Home</li></Link>
-                    <Link  to="/projects"><li>Projects</li></Link>
+                    <Link  to="/Posts"><li>Posts</li></Link>
                     <Link  to="/colleagues"><li>Colleagues</li></Link>
                     <Link  to="/collaborators"><li>Collaborators</li></Link>
                     <Link  to="/myprofile"><li>My Profile</li></Link>

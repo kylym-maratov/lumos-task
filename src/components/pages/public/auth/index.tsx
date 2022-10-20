@@ -4,8 +4,8 @@ import {Recovery} from "./components/recovery";
 
 export const AuthPage = () => {
     return {
-        signin:<Signin/>,
-        signup:<Signup/>,
+        signin: <Signin/>,
+        signup: <Signup/>,
         recovery:<Recovery/>
     }
 }

@@ -5,7 +5,6 @@ import {initialValues, validationSchema} from "./helper";
 import {AiOutlineEye, AiOutlineUser, AiOutlineEyeInvisible} from "react-icons/ai";
 import {Link} from "react-router-dom";
 import styles from '../../styles'
-import {API_URLS} from "../../../../../../constants/api";
 import {useAppDispatch} from "../../../../../../store/hooks";
 
 const {Logo, SignDiv, InputBlock, InputBorder , SwitchBlock , ButtonBlock} = styles
@@ -13,8 +12,6 @@ const {Logo, SignDiv, InputBlock, InputBorder , SwitchBlock , ButtonBlock} = sty
 export const Recovery = (): JSX.Element => {
     const [showPassword, setShowPassword] = useState<boolean>(false)
     const dispatch = useAppDispatch()
-
-
     return (
         <SignDiv>
             <Logo>

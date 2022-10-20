@@ -1,7 +1,6 @@
 import { Formik, Field, Form } from 'formik'
 import React, {useState} from 'react'
 import {Link} from 'react-router-dom'
-import { SignupProps } from './types';
 import {initialValues, validationSchema} from './helper'
 import styles from '../../styles';
 import {AiOutlineEye, AiOutlineEyeInvisible, AiOutlineUser} from 'react-icons/ai'
@@ -11,7 +10,7 @@ import {setFetchSignupUser} from "../../../../../../store/reducers/user/fetching
 
 const {SignDiv, InputBlock, InputBorder, Logo, ButtonBlock, SwitchBlock} = styles;
 
-export const Signup = (props: SignupProps): JSX.Element => {
+export const Signup: React.FC = ()  => {
     const [showPassword, setShowPassword] = useState<boolean>(false)
     const dispatch = useAppDispatch()
     const {loading} = useAppSelector(state => state.loadingReducer)

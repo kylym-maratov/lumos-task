@@ -1,18 +1,17 @@
 import React, {useEffect} from 'react'
-import { Routes, Route, Navigate } from 'react-router-dom'
 import { useAppSelector } from '../store/hooks'
-import { AuthPage } from '../components/pages/public/auth'
-import {AuthUtil} from "./auth";
+import {AuthUtil} from "./auth.service";
 import PrivateRoutes from "../components/pages/private";
 import PublicRoutes from "../components/pages/public";
+import {getStorage} from "./storage.service";
 
 export const useRoutes = (): JSX.Element => {
-    const authpages = AuthPage()
+
     const {username, token} = useAppSelector(state => state.userReducer)
     const {login, userStorageName} = AuthUtil()
 
     useEffect(() => {
-        let user = JSON.parse(localStorage.getItem(userStorageName) || '{}')
+        let user = getStorage(userStorageName)
 
         if (user) {
             login(user.username, user.token)
