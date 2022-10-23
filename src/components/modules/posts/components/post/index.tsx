@@ -1,13 +1,31 @@
-import React from 'react';
-import {PostWrapper, PostHeader, PostContent, PostButtons, PostAbout} from "./styles";
+import React, { useState} from 'react';
+import {PostWrapper, PostHeader, PostContent, PostButtons, PostAbout, ContentPoints} from "./styles";
 import {AiOutlineHeart, AiOutlineComment, AiOutlineAppstoreAdd} from 'react-icons/ai'
 import {BsThreeDots} from 'react-icons/bs'
+import { FcPrevious, FcNext} from 'react-icons/fc'
 
 interface Props {
   item: any
 }
 
 export const Post: React.FC<Props> = ({item}) => {
+  const sliders = item.images
+  const [currentSlide, setCurrentSlide] = useState<string>(sliders[0])
+
+  const nextSlide = () => {
+    setCurrentSlide(sliders[sliders.indexOf(currentSlide) + 1])
+  }
+
+  const prevSlide = () => {
+    setCurrentSlide(sliders[sliders.indexOf(currentSlide) - 1])
+  }
+
+  const createPoints = () => {
+     if (sliders.length > 1) {
+       return sliders.map((item: string, key: number) => <div key={key} id={item === currentSlide ? "active" : ""}></div>)
+     }
+  }
+
   return (
     <PostWrapper>
       <PostHeader>
@@ -18,8 +36,22 @@ export const Post: React.FC<Props> = ({item}) => {
         <button type="button"><BsThreeDots /></button>
       </PostHeader>
       <PostContent>
-        <img src={item.image} alt={item.username}/>
+        {sliders[0] !== currentSlide
+          &&
+            <button type="button" onClick={() => prevSlide()} >
+            <FcPrevious />
+        </button>}
+        <div>
+            <img src={currentSlide} alt={item} />
+        </div>
+        {
+          sliders[sliders.indexOf(currentSlide) + 1] &&
+            <button type="button" onClick={() => nextSlide()}>
+                <FcNext/>
+            </button>
+        }
       </PostContent>
+      <ContentPoints>{createPoints()}</ContentPoints>
       <PostButtons>
          <div>
            <button type="button"><AiOutlineHeart /></button>

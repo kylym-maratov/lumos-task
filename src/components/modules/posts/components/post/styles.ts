@@ -11,8 +11,6 @@ export const PostWrapper = styled.article`
   margin-bottom: 60px;
   transition: all .5s;
   background: white;
-
- 
 `
 
 export const PostHeader = styled.div`
@@ -58,11 +56,47 @@ export const PostHeader = styled.div`
 export const PostContent = styled.div`
    display: flex;
    justify-content: center;
-   background: black;
-   max-height: 100%;
-   overflow: hidden;
+   align-items: center;
+   position: relative;
+  transition: all .5s;
+    
+  div {
+    background: black;
+    max-height: 100%;
+    display: flex;
+    overflow: hidden;
+ 
+  }
   img {
-     width: 100%;
+    width: 100%;
+  }
+    button { 
+      position: absolute;
+      transition: all .3s;
+      font-size: 22px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      outline: none;
+    }
+  
+  button:first-child {
+     left: -50px;
+     opacity: 0;
+  }
+  
+  button:last-child {
+    right: -50px;
+    opacity: 0;
+  }
+  
+  :hover button:first-child {
+    left: 5px;
+    opacity: 1;
+  }
+  :hover   button:last-child {
+    right: 5px;
+    opacity: 1;
   }
 `
 
@@ -112,3 +146,23 @@ export const PostAbout = styled.div`
   }
   
   `
+
+
+export const ContentPoints = styled.div`
+    display: flex;
+    justify-content: center;
+    margin-top: 2px;
+    align-items: center;
+  transition: all .5s;
+  
+    div {
+       border-radius: 100%; 
+       border: 3px solid gray;
+       margin-left: 10px;
+       background: gray;
+    }
+
+  div[id = "active"] {
+     border: 4px solid blue;
+  }
+`

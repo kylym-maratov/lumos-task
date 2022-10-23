@@ -2,7 +2,6 @@ import React, {useEffect} from 'react'
 import {Header} from "../../../modules/header";
 import {Posts} from "../../../modules/posts";
 import {HomePageWrapper} from "./styled";
-import {UserContainer} from "./components/user";
 
 
 export const HomePage = (): JSX.Element => {
@@ -13,7 +12,6 @@ export const HomePage = (): JSX.Element => {
               <Header />
               <HomePageWrapper>
                 <Posts />
-                <UserContainer />
               </HomePageWrapper>
           </div>
     )

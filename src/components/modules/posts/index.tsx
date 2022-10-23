@@ -10,7 +10,9 @@ const posts = [
     username: 'mer_calme25',
     description: 'I don\'t know Russian but i feel a lot while listening to this song...Music is universal',
     likes: 1000,
-    image: "https://assets.reedpopcdn.com/Genshin-Impact-anime.jpg/BROK/thumbnail/1600x900/quality/100/Genshin-Impact-anime.jpg",
+    images: [
+      "https://media.wired.com/photos/5fb2cc575c9914713ead03de/master/w_1920,c_limit/Gear-Apple-MacBook-Air-top-down-SOURCE-Apple.jpg"
+    ],
     comments: ['dsadsa', 'dsadsa', 'dsadas'],
     date: '16.01.2001 | 10:20 PM'
   },
@@ -19,7 +21,11 @@ const posts = [
     username: 'Miya',
     description: '5 Amazing Platforms For Web Developers 😱🔥',
     likes: 1000,
-    image: "https://storage.googleapis.com/ares-profile-pictures/hd/mer_calme25-496ab7f1214e6985543a2620b8001723_hd.jpg",
+    images: [
+      "https://static.frame.work/92cqdkoguwxj1a5w5ks5rnjs7nl8",
+      "https://cdn-dynmedia-1.microsoft.com/is/image/microsoftcorp/gldn-CP-surface-laptop-4-multitasking-1668x940-1?wid=515&hei=293&fit=crop",
+      "https://media.wired.com/photos/5fb2cc575c9914713ead03de/master/w_1920,c_limit/Gear-Apple-MacBook-Air-top-down-SOURCE-Apple.jpg"
+    ],
     comments: [],
     date: '16.01.2001 | 10:20 PM'
   },
@@ -28,7 +34,13 @@ const posts = [
     username: 'Robert Jr',
     description: '5 Amazing Platforms For Web Developers 😱🔥🚀 ',
     likes: 1000,
-    image: "https://m.media-amazon.com/images/M/MV5BNzQxNzQxNjk5NV5BMl5BanBnXkFtZTgwNTI4MTU0MzE@._V1_FMjpg_UX1000_.jpg",
+    images: [
+      "https://media.wired.com/photos/5fb2cc575c9914713ead03de/master/w_1920,c_limit/Gear-Apple-MacBook-Air-top-down-SOURCE-Apple.jpg",
+      "https://static.frame.work/92cqdkoguwxj1a5w5ks5rnjs7nl8",
+      "https://cdn-dynmedia-1.microsoft.com/is/image/microsoftcorp/gldn-CP-surface-laptop-4-multitasking-1668x940-1?wid=515&hei=293&fit=crop",
+      "https://i.pcmag.com/imagery/reviews/02lcg0Rt9G3gSqCpWhFG0o1-2.jpg",
+      "https://www.cnet.com/a/img/resize/b9e66585cdf259a71344fddc53b04339e4e162fb/hub/2022/04/27/b796792b-5b34-4405-83eb-efc66371ee06/samsung-galaxy-book-2-pro-360-01.jpg?auto=webp&fit=crop&height=630&width=1200"
+    ],
     comments: ['dsada', 'dsada'],
     date: '16.01.2001 | 10:20 PM'
   },
@@ -37,7 +49,9 @@ const posts = [
     username: 'Asus',
     description: '5 Amazing Platforms For Web Developers 😱🔥🚀 ',
     likes: 1000,
-    image: "https://fdn.gsmarena.com/imgroot/news/22/08/asus-zenbook-17-fold-oled/-1200/gsmarena_001.jpg",
+    images: [
+      "https://media.wired.com/photos/5fb2cc575c9914713ead03de/master/w_1920,c_limit/Gear-Apple-MacBook-Air-top-down-SOURCE-Apple.jpg"
+    ],
     comments: [],
     date: '16.01.2001 | 10:20 PM'
   },
@@ -46,7 +60,9 @@ const posts = [
     username: 'Acer',
     description: '5 Amazing Platforms For Web Developers 😱🔥🚀 ',
     likes: 1000,
-    image: "https://mobile-review.com/articles/2020/image/acer-aspire-5/pic/10.jpg",
+    images: [
+      "https://media.wired.com/photos/5fb2cc575c9914713ead03de/master/w_1920,c_limit/Gear-Apple-MacBook-Air-top-down-SOURCE-Apple.jpg"
+    ],
     comments: [],
     date: '16.01.2001 | 10:20 PM'
   },
@@ -55,7 +71,9 @@ const posts = [
     username: 'Acer',
     description: '5 Amazing Platforms For Web Developers 😱🔥🚀 ',
     likes: 1000,
-    image: "https://pbs.twimg.com/media/FZ9yPK8agAA3OQK.jpg",
+    images: [
+      "https://media.wired.com/photos/5fb2cc575c9914713ead03de/master/w_1920,c_limit/Gear-Apple-MacBook-Air-top-down-SOURCE-Apple.jpg"
+    ],
     comments: [],
     date: '16.01.2001 | 10:20 PM'
   },
@@ -64,7 +82,9 @@ const posts = [
     username: 'Acer',
     description: '5 Amazing Platforms For Web Developers 😱🔥🚀 ',
     likes: 1000,
-    image: "https://nitter.net/pic/ext_tw_video_thumb%2F1483714855031144453%2Fpu%2Fimg%2Fz7mOu8TK1naRFidY.jpg",
+    images: [
+      "https://media.wired.com/photos/5fb2cc575c9914713ead03de/master/w_1920,c_limit/Gear-Apple-MacBook-Air-top-down-SOURCE-Apple.jpg"
+    ],
     comments: [],
     date: '16.01.2001 | 10:20 PM'
   }
