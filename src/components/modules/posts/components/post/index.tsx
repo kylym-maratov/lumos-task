@@ -1,5 +1,7 @@
 import React from 'react';
-import {PostWrapper} from "./styles";
+import {PostWrapper, PostHeader, PostContent, PostButtons, PostAbout} from "./styles";
+import {AiOutlineHeart, AiOutlineComment, AiOutlineAppstoreAdd} from 'react-icons/ai'
+import {BsThreeDots} from 'react-icons/bs'
 
 interface Props {
   item: any
@@ -8,18 +10,38 @@ interface Props {
 export const Post: React.FC<Props> = ({item}) => {
   return (
     <PostWrapper>
-        <div id="header">
-          <div id="name">@{item.username}</div>
+      <PostHeader>
+        <div>
+          <img src={item.user_image} alt={item.username} />
+          <span> {item.username}</span>
         </div>
-      <div id="post-image">
-        <img src={item.image}></img>
-      </div>
-      <div id="about">
-         <div id="description">
-            {item.description}
-            <span>more...</span>
+        <button type="button"><BsThreeDots /></button>
+      </PostHeader>
+      <PostContent>
+        <img src={item.image} alt={item.username}/>
+      </PostContent>
+      <PostButtons>
+         <div>
+           <button type="button"><AiOutlineHeart /></button>
+           <button type="button"><AiOutlineComment /></button>
          </div>
-      </div>
+        <div>
+          <button type="button"><AiOutlineAppstoreAdd /></button>
+        </div>
+      </PostButtons>
+      <PostAbout>
+        <div>
+          <div id="likes">{item.likes} Likes</div>
+          <div id="desc">{item.description}</div>
+          <span>{
+            item.comments.length
+            ?
+              `View ${item.comments.length} comments` : null
+
+          }</span>
+        </div>
+         <span>{item.date}</span>
+      </PostAbout>
     </PostWrapper>
   );
 };

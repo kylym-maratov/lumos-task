@@ -72,7 +72,7 @@ const ButtonBlock = styled.div`
   button {
      width: 140px;
     height: 40px;
-    border-radius: none;
+    border: none;
     outline: none;
     color: white;
     background: #474747;
@@ -84,7 +84,6 @@ const ButtonBlock = styled.div`
   }
 
   button:disabled {background: gray;}
-   
 `
 
 const SwitchBlock = styled.div`

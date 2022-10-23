@@ -1,33 +1,34 @@
-import React, {   useRef} from 'react';
-import {HeaderBlock, HeaderMenuBlock} from './styles'
-import logo from '../../../assets/images/logo.svg'
-import {Link, useLocation} from 'react-router-dom'
-import {AuthUtil} from "../../../services/auth.service";
+import React  from 'react';
+import logo from '../../../assets/images/logo_main.svg'
+import {Link} from 'react-router-dom'
+import {HeaderBlock, HeaderLogo, HeaderMenu, HeaderSearch, HeaderWrapper} from './styles'
+import {
+  AiOutlineHome,
+  AiOutlineMessage,
+  AiOutlineHeart,
+  AiOutlineSearch,
+  AiOutlineSetting
+} from 'react-icons/ai'
 
 export const Header = () => {
-    const {logout} = AuthUtil()
-    const location = useLocation()
-    const menuRef = useRef<HTMLDivElement>(null)
-
-
 
     return (
-        <HeaderBlock>
-            <HeaderMenuBlock active={true}>
-                <div id="logo">
-                    <Link to="/"><img src={logo}></img></Link>
-                </div>
-                <div id="menu" ref={menuRef}>
-                    <Link  to="/"><li id="active">Home</li></Link>
-                    <Link  to="/Posts"><li>Posts</li></Link>
-                    <Link  to="/colleagues"><li>Colleagues</li></Link>
-                    <Link  to="/collaborators"><li>Collaborators</li></Link>
-                    <Link  to="/myprofile"><li>My Profile</li></Link>
-                </div>
-            </HeaderMenuBlock>
-            <button onClick={() => logout()}>
-                Logout
-            </button>
-        </HeaderBlock>
+        <HeaderWrapper>
+            <HeaderBlock>
+              <HeaderLogo>
+                <Link to="/"> <img src={logo} alt="logo"></img></Link>
+              </HeaderLogo>
+              <HeaderSearch>
+                <input type="text" placeholder="Search by post name"></input>
+                <AiOutlineSearch />
+              </HeaderSearch>
+              <HeaderMenu>
+                <Link to="/"><AiOutlineHome /></Link>
+                <Link to="/"><AiOutlineMessage /></Link>
+                <Link to="/"><AiOutlineHeart /></Link>
+                <Link to="/"><AiOutlineSetting /></Link>
+              </HeaderMenu>
+            </HeaderBlock>
+        </HeaderWrapper>
     );
 };

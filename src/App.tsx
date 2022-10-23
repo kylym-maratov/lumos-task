@@ -7,7 +7,7 @@ import {Modal} from "./components/modules/modal";
 function App() {
 
   return (
-    <div className="App">
+    <div>
       <BrowserRouter>
         {useRoutes()}
       </BrowserRouter>

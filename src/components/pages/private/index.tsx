@@ -6,10 +6,10 @@ import {ProfilePage} from "./profile";
 
 export default function PrivateRoutes (): JSX.Element {
     return (
-        <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/profile" element={<ProfilePage />} />
-            <Route path="*" element={<Navigate to="/" />} />
-        </Routes>
+         <Routes>
+           <Route path="/" element={<HomePage />} />
+           <Route path="/profile" element={<ProfilePage />} />
+           <Route path="*" element={<Navigate to="/" />} />
+         </Routes>
     )
 }

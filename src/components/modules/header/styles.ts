@@ -1,48 +1,60 @@
 import styled from 'styled-components'
 
-type HeaderMenuProps = {
-    active: boolean;
-}
+
 
 export const HeaderBlock = styled.div`
-    display: flex;
+  display: flex;
   justify-content: space-between;
   align-items: center;
-   padding: 0px 20px;
-   
-    
-  
-  button {
-     width: 97px;
-    height: 31px;
-    background: #9C0404;
-    color: white;
-    border: none;
-    outline: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
+  width: 1000px;
+  margin: 0px auto;
+`
+
+export const HeaderWrapper = styled.div`
+  padding: 10px 10px;
+  background: white;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  border-bottom: 1px solid darkgray;
+`
+
+export const HeaderLogo = styled.div`
+   cursor: pointer;
+`
+
+export  const HeaderSearch = styled.div`
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding: 0px 5px;
+   input {
+     border: none;
+     outline: none;
+     font-size: 11px;
+     height: 25px;
+     width: 200px;
+     border-radius: inherit;
+   }
+  svg {
+    font-size: 20px;
+    position: relative;
+    top: 5px;
   }
 `
 
-export const HeaderMenuBlock = styled.div<HeaderMenuProps>`
+export const HeaderMenu = styled.div`
   display: flex;
   align-items: center;
   
-  div[id = 'logo'] {
-     cursor: pointer;
-    margin-top: 2px;
-  }
-
-  div[id = 'menu'] {display: flex; list-style-type: none;}
   
-  div[id = 'menu'] a{
-    font-size: 12px;
+  a {
+    margin-right: 18px;
+  }
+  
+  svg {
+    font-size: 26px;
     color: black;
-    font-weight: bold;
-    text-decoration: none;
-    margin-left: 25px;
   }
 
-  div[id = 'menu'] > a > li[id = 'active'] {list-style-type: ${props => props.active ? 'disc' : 'none'}}
+  svg:hover {color: gray}
 `

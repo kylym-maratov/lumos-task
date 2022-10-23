@@ -5,7 +5,7 @@ import {removeStorage, setStorage} from "./storage.service";
 
 const userStorageName= 'userStorage'
 
-export const AuthUtil = () => {
+export const AuthService = () => {
     const dispatch = useAppDispatch()
 
     const login = useCallback((username: string, token: string) => {
