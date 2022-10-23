@@ -1,5 +1,5 @@
 import {call, put, takeEvery} from "redux-saga/effects";
-import {  userPostRequest} from "../../../api/user.api";
+import {requestApi} from "../../../api";
 import {API_URLS} from "../../../constants/api";
 import {setUsername, setUserToken} from "../../reducers/user/actions";
 import {userFetchingActions }from "../../reducers/user/fetching/actions";
@@ -10,7 +10,7 @@ function* signinUserWorker({payload} : any) {
     try {
         yield put(setFailedMessage(''))
         yield put(setLoading(true))
-        const {data} = yield call(userPostRequest, API_URLS.signin, JSON.stringify({...payload}))
+        const {data} = yield call(requestApi, API_URLS.signin, JSON.stringify({...payload}), 'POST')
         yield put(setUsername(data.data.userData.username))
         yield put(setUserToken(data.data.token))
     } catch (e) {
@@ -24,7 +24,7 @@ function* signupUserWorker({payload} : any) {
     try {
         yield put(setFailedMessage(''))
         yield put(setLoading(true))
-        const {data} = yield call(userPostRequest, API_URLS.signup, JSON.stringify({...payload}))
+        const {data} = yield call(requestApi, API_URLS.signup, JSON.stringify({...payload}), 'POST')
         yield put(setSuccessMesssage(data.message))
     } catch (e) {
         yield put(setFailedMessage((e as any).response.data.error || 'Unknown error'))

@@ -1,6 +1,8 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {PostsWrapper} from "./styles";
 import {Post} from "./components/post";
+import {useAppDispatch} from "../../../store/hooks";
+import {setFetchPosts} from "../../../store/reducers/posts/actions";
 
 const posts = [
   {
@@ -70,6 +72,10 @@ const posts = [
 
 
 export const Posts = () => {
+  const dispatch = useAppDispatch()
+    useEffect(() => {
+       dispatch(setFetchPosts(true))
+    }, [])
     return (
         <PostsWrapper>
           {posts.length ? posts.map((item, i) => {

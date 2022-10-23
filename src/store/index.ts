@@ -3,6 +3,7 @@ import createSagaMiddleware from 'redux-saga'
 import rootUserReducer from './reducers/user';
 import rootSagaWatcher from './saga/index'
 import loadingReducer from "./reducers/loading";
+import postsReducer from './reducers/posts/index'
 import {composeWithDevTools} from "redux-devtools-extension";
 const sagaMiddleware = createSagaMiddleware()
 
@@ -10,7 +11,8 @@ const composeEnhancers = composeWithDevTools({});
 
 const rootReducer = combineReducers({
    ...rootUserReducer,
-   loadingReducer
+   loadingReducer,
+   postsReducer
 })
 
 export const store = createStore(rootReducer, composeEnhancers(applyMiddleware(sagaMiddleware)))

@@ -22,4 +22,5 @@ export const LoadingBlock = styled.div<LoadingBlockProps>`
     transform: translate(-50%);
   z-index: 999999999999;
   transition: all .3s;
+    background: white;
 `

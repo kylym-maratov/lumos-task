@@ -3,7 +3,7 @@ import {setUsername, setUserToken} from "../store/reducers/user/actions";
 import {useCallback} from "react";
 import {removeStorage, setStorage} from "./storage.service";
 
-const userStorageName= 'userStorage'
+export const userStorageName= 'userStorage'
 
 export const AuthService = () => {
     const dispatch = useAppDispatch()
