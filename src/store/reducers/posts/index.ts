@@ -1,10 +1,12 @@
 import {InitialState} from "./types";
-import {postsActions, setFetchPosts} from "./actions";
+import {postsActions} from "../../actions/posts.action";
 
 
 const initialState:InitialState = {
     posts: [],
-   fetching: false
+    post_id: null,
+    post: null,
+    fetching: false
 }
 
 
@@ -16,10 +18,20 @@ export default  function PostsReducer (state = initialState, action: any) {
          posts: action.payload
        }
        break
-     case postsActions.FETCHING_POSTS:
+     case postsActions.SET_FETCHING_POSTS:
        return {
          ...state,
           fetching: action.payload
+       }
+     case postsActions.SET_FETCHING_POST:
+       return {
+         ...state,
+         post_id: action.payload
+       }
+     case postsActions.SET_POST:
+       return {
+         ...state,
+         post: action.payload
        }
      default:
        return  state

@@ -1,9 +1,10 @@
-import { userFetchingActions } from "./actions";
+import { userFetchingActions } from "../../../actions/user.fetching.action";
 import { InitialState } from "./types";
 
 export const initialState: InitialState = {
     fetchSigninUser: null,
-    fetchSignupUser: null
+    fetchSignupUser: null,
+    fetchUser: null
 }
 
 export default function userFetchReducer(state = initialState, action: any) {
@@ -17,6 +18,11 @@ export default function userFetchReducer(state = initialState, action: any) {
             return {
                 ...state,
                 fetchSignupUser: action.payload
+            }
+        case userFetchingActions.FETCH_USER:
+            return {
+                ...state,
+                fetchUser: action.payload
             }
         default:
             return state

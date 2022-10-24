@@ -11,7 +11,7 @@ export const UserMenu: React.FC<{showUserMenu: boolean}> = ({showUserMenu}) => {
       <UserMenuWrapper>
          <div>
            <div>
-             <li><Link to="/profile">My profile</Link></li>
+             <Link to="/profile">My profile</Link>
            </div>
            <button type="button" onClick={() => logout()}>Logout</button>
          </div>

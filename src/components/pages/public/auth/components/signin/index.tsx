@@ -5,7 +5,7 @@ import {initialValues, validationSchema} from "../signup/helper";
 import {AiOutlineEye, AiOutlineUser, AiOutlineEyeInvisible} from "react-icons/ai";
 import {Link} from "react-router-dom"
 import {useAppDispatch, useAppSelector} from "../../../../../../store/hooks";
-import {setFetchSigninUser} from "../../../../../../store/reducers/user/fetching/actions";
+import {setFetchSigninUser} from "../../../../../../store/actions/user.fetching.action";
 import styles from '../../styles'
 
 const {Logo, SignDiv, InputBlock, InputBorder , SwitchBlock , ButtonBlock} = styles

@@ -1,14 +1,16 @@
 import styled from "styled-components";
 
+type Props = {
+    detail: boolean;
+}
 
-
-export const PostWrapper = styled.article`
+export const PostWrapper = styled.article<Props>`
   border-radius: 8px;
   align-content: stretch;
   box-sizing: border-box;
   z-index: 9999999;
-  box-shadow: 0px 1px 5px rgba(0, 110, 180, 0.15);
-  margin-bottom: 60px;
+  box-shadow: ${props => !props.detail ? '0px 1px 5px rgba(0, 110, 180, 0.15)' : 'none'};
+  margin-bottom ${props => !props.detail ? '60px' : '0px'};
   transition: all .5s;
   background: white;
 `
@@ -132,16 +134,20 @@ export const PostAbout = styled.div`
   }
   div [id = "desc"] {
     font-size: 13px;
-    overflow: hidden;
     width: 350px;
     height: 50px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
- 
-  
-  span {
+  a{
     font-size: 12px;
     color: gray;
-    cursor: pointer;
+    text-decoration: none
+  }
+  
+  span {
+    font-size: 11px;
+    color: gray;
     display: flex;
   }
   

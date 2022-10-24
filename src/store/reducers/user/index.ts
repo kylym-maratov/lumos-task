@@ -1,5 +1,5 @@
 import { InitialState } from "./types"
-import { userActions } from "./actions"
+import { userActions } from "../../actions/user.action"
 import userFetchReducer from "./fetching";
 
 const initialState: InitialState = {

@@ -1,5 +1,5 @@
 import {InitialState} from "./types";
-import {loadingActions} from "./actions";
+import {loadingActions} from "../../actions/loading.action";
 
 
 const initialState: InitialState = {

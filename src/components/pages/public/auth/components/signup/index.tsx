@@ -6,7 +6,7 @@ import styles from '../../styles';
 import {AiOutlineEye, AiOutlineEyeInvisible, AiOutlineUser} from 'react-icons/ai'
 import logo from '../../../../../../assets/images/logo.svg'
 import {useAppDispatch, useAppSelector} from "../../../../../../store/hooks";
-import {setFetchSignupUser} from "../../../../../../store/reducers/user/fetching/actions";
+import {setFetchSignupUser} from "../../../../../../store/actions/user.fetching.action";
 
 const {SignDiv, InputBlock, InputBorder, Logo, ButtonBlock, SwitchBlock} = styles;
 

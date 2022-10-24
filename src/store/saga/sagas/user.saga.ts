@@ -1,9 +1,9 @@
 import {call, put, takeEvery} from "redux-saga/effects";
 import {requestApi} from "../../../api";
 import {API_URLS} from "../../../constants/api";
-import {setUsername, setUserToken} from "../../reducers/user/actions";
-import {userFetchingActions }from "../../reducers/user/fetching/actions";
-import {setFailedMessage, setLoading, setSuccessMesssage} from "../../reducers/loading/actions";
+import {setUsername, setUserToken} from "../../actions/user.action";
+import {userFetchingActions }from "../../actions/user.fetching.action";
+import {setFailedMessage, setLoading, setSuccessMesssage} from "../../actions/loading.action";
 
 
 function* signinUserWorker({payload} : any) {
@@ -34,7 +34,19 @@ function* signupUserWorker({payload} : any) {
     }
 }
 
+function* fetchUserWorker({payload} : any) {
+    try {
+        const {data} = yield call(requestApi, `${API_URLS.profile}/${payload}`)
+        console.log(data)
+    } catch (e)
+    {
+        yield put(setFailedMessage((e as any).response.data.error || 'Unknown error'))
+    }
+
+}
+
 export function* userWatcher() {
     yield takeEvery(userFetchingActions.FETCH_SIGNUP_USER, signupUserWorker)
     yield takeEvery(userFetchingActions.FETCH_SIGNIN_USER, signinUserWorker)
+    yield takeEvery(userFetchingActions.FETCH_USER, fetchUserWorker)
 }

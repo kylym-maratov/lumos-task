@@ -1,5 +1,5 @@
 import {useAppDispatch} from "../store/hooks";
-import {setUsername, setUserToken} from "../store/reducers/user/actions";
+import {setUsername, setUserToken} from "../store/actions/user.action";
 import {useCallback} from "react";
 import {removeStorage, setStorage} from "./storage.service";
 

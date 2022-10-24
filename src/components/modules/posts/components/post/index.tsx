@@ -1,16 +1,21 @@
-import React, { useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {PostWrapper, PostHeader, PostContent, PostButtons, PostAbout, ContentPoints} from "./styles";
-import {AiOutlineHeart, AiOutlineComment, AiOutlineAppstoreAdd} from 'react-icons/ai'
+import {AiOutlineHeart, AiFillHeart, AiOutlineComment, AiOutlineAppstoreAdd} from 'react-icons/ai'
 import {BsThreeDots} from 'react-icons/bs'
 import { FcPrevious, FcNext} from 'react-icons/fc'
+import {Link} from "react-router-dom";
+
 
 interface Props {
-  item: any
+  item: any,
+  detail: boolean;
 }
 
-export const Post: React.FC<Props> = ({item}) => {
-  const sliders = item.images
-  const [currentSlide, setCurrentSlide] = useState<string>(sliders[0])
+export const Post: React.FC<Props> = ({item, detail}) => {
+  const sliders = item.image
+  const [currentSlide, setCurrentSlide] = useState<string>(item.image[0])
+
+  useEffect(() => {setCurrentSlide(item.image[0])}, [item.image])
 
   const nextSlide = () => {
     setCurrentSlide(sliders[sliders.indexOf(currentSlide) + 1])
@@ -25,13 +30,19 @@ export const Post: React.FC<Props> = ({item}) => {
        return sliders.map((item: string, key: number) => <div key={key} id={item === currentSlide ? "active" : ""}></div>)
      }
   }
+  const getCurrentDate = () => {
+    if (!item.createdAt) return null
+    const date = item.createdAt.split(' ')
+
+    return `${date[1]} ${date[2]}.${date[3]} | ${date[4]}`
+  }
 
   return (
-    <PostWrapper>
+    <PostWrapper id={item._id} detail={detail}>
       <PostHeader>
-        <div>
-          <img src={item.user_image} alt={item.username} />
-          <span> {item.username}</span>
+        <div id={item.userid}>
+          <img src={item.userImage} alt={item.username} />
+          <span> {item.title}</span>
         </div>
         <button type="button"><BsThreeDots /></button>
       </PostHeader>
@@ -54,8 +65,8 @@ export const Post: React.FC<Props> = ({item}) => {
       <ContentPoints>{createPoints()}</ContentPoints>
       <PostButtons>
          <div>
-           <button type="button"><AiOutlineHeart /></button>
-           <button type="button"><AiOutlineComment /></button>
+          <button type="button"><AiOutlineHeart /></button>
+           {!detail && <Link to={`/posts/${item._id}`}><button type="button"><AiOutlineComment /></button></Link>}
          </div>
         <div>
           <button type="button"><AiOutlineAppstoreAdd /></button>
@@ -63,16 +74,17 @@ export const Post: React.FC<Props> = ({item}) => {
       </PostButtons>
       <PostAbout>
         <div>
-          <div id="likes">{item.likes} Likes</div>
+          <div id="likes">{item.likes.length ? `${item.likes.length} Likes` :  null}</div>
           <div id="desc">{item.description}</div>
-          <span>{
-            item.comments.length
-            ?
-              `View ${item.comments.length} comments` : null
-
-          }</span>
+          <div id="tags">{item.tags}</div>
+          <div> {
+              !detail &&  item.comments.length ?
+                <Link to={`/posts/${item._id}`} >{`View ${item.comments.length} comments`}</Link>
+                :
+                null
+          } </div>
         </div>
-         <span>{item.date}</span>
+         <span>{getCurrentDate()}</span>
       </PostAbout>
     </PostWrapper>
   );
