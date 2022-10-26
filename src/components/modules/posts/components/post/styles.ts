@@ -76,8 +76,9 @@ export const PostContent = styled.div`
       position: absolute;
       transition: all .3s;
       font-size: 22px;
+      border-radius: 5px;
       background: transparent;
-      border: none;
+      border: 1px solid white;
       cursor: pointer;
       outline: none;
     }

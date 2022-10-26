@@ -1,10 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useMemo, useState} from 'react';
 import {PostWrapper, PostHeader, PostContent, PostButtons, PostAbout, ContentPoints} from "./styles";
 import {AiOutlineHeart, AiFillHeart, AiOutlineComment, AiOutlineAppstoreAdd} from 'react-icons/ai'
 import {BsThreeDots} from 'react-icons/bs'
 import { FcPrevious, FcNext} from 'react-icons/fc'
 import {Link} from "react-router-dom";
-
+import {createPoints, getCurrentDate} from "./helper";
 
 interface Props {
   item: any,
@@ -14,6 +14,8 @@ interface Props {
 export const Post: React.FC<Props> = ({item, detail}) => {
   const sliders = item.image
   const [currentSlide, setCurrentSlide] = useState<string>(item.image[0])
+  const itemDate = useMemo(() => getCurrentDate(item), [item.createdAt])
+  const itemPoints = useMemo(() => createPoints(currentSlide, sliders), [currentSlide, sliders])
 
   useEffect(() => {setCurrentSlide(item.image[0])}, [item.image])
 
@@ -23,18 +25,6 @@ export const Post: React.FC<Props> = ({item, detail}) => {
 
   const prevSlide = () => {
     setCurrentSlide(sliders[sliders.indexOf(currentSlide) - 1])
-  }
-
-  const createPoints = () => {
-     if (sliders.length > 1) {
-       return sliders.map((item: string, key: number) => <div key={key} id={item === currentSlide ? "active" : ""}></div>)
-     }
-  }
-  const getCurrentDate = () => {
-    if (!item.createdAt) return null
-    const date = item.createdAt.split(' ')
-
-    return `${date[1]} ${date[2]}.${date[3]} | ${date[4]}`
   }
 
   return (
@@ -62,7 +52,7 @@ export const Post: React.FC<Props> = ({item, detail}) => {
             </button>
         }
       </PostContent>
-      <ContentPoints>{createPoints()}</ContentPoints>
+      <ContentPoints>{itemPoints}</ContentPoints>
       <PostButtons>
          <div>
           <button type="button"><AiOutlineHeart /></button>
@@ -84,7 +74,7 @@ export const Post: React.FC<Props> = ({item, detail}) => {
                 null
           } </div>
         </div>
-         <span>{getCurrentDate()}</span>
+         <span>{itemDate}</span>
       </PostAbout>
     </PostWrapper>
   );

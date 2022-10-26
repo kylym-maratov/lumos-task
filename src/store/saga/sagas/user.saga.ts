@@ -3,46 +3,28 @@ import {requestApi} from "../../../api";
 import {API_URLS} from "../../../constants/api";
 import {setUsername, setUserToken} from "../../actions/user.action";
 import {userFetchingActions }from "../../actions/user.fetching.action";
-import {setFailedMessage, setLoading, setSuccessMesssage} from "../../actions/loading.action";
+import { setSuccessMesssage} from "../../actions/loading.action";
 
 
 function* signinUserWorker({payload} : any) {
     try {
-        yield put(setFailedMessage(''))
-        yield put(setLoading(true))
         const {data} = yield call(requestApi, API_URLS.signin, JSON.stringify({...payload}), 'POST')
         yield put(setUsername(data.data.userData.username))
         yield put(setUserToken(data.data.token))
-    } catch (e) {
-        yield put(setFailedMessage((e as any).response.data.error || 'Unknown error'))
-    } finally {
-        yield put(setLoading(false))
-    }
+    } catch (e) {}
 }
 
 function* signupUserWorker({payload} : any) {
     try {
-        yield put(setFailedMessage(''))
-        yield put(setLoading(true))
         const {data} = yield call(requestApi, API_URLS.signup, JSON.stringify({...payload}), 'POST')
         yield put(setSuccessMesssage(data.message))
-    } catch (e) {
-        yield put(setFailedMessage((e as any).response.data.error || 'Unknown error'))
-    }
-    finally {
-        yield put(setLoading(false))
-    }
+    } catch (e) {}
 }
 
 function* fetchUserWorker({payload} : any) {
     try {
         const {data} = yield call(requestApi, `${API_URLS.profile}/${payload}`)
-        console.log(data)
-    } catch (e)
-    {
-        yield put(setFailedMessage((e as any).response.data.error || 'Unknown error'))
-    }
-
+    } catch (e) {}
 }
 
 export function* userWatcher() {

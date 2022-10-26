@@ -5,8 +5,6 @@ import {HomePageWrapper} from "./styled";
 
 
 export const HomePage = (): JSX.Element => {
-
-
     return (
           <div>
               <Header />
