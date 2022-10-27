@@ -48,6 +48,8 @@ export const PostDetailComment = styled.div`
       margin: 5px 0px;
       font-size: 12px;
     }
+    
+    
   }
   
 `

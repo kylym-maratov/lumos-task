@@ -11,3 +11,15 @@ export const getCurrentDate = (item: any) => {
 
   return `${date[1]} ${date[2]}.${date[3]} | ${date[4]}`
 }
+
+export const getUserLike = (likes: any[], userid: string) => {
+  let flag = false
+
+  for (let i = 0; likes.length > i; i++) {
+     if (likes[i].userid === userid) {
+        flag = true
+        break
+     }
+   }
+  return flag
+}

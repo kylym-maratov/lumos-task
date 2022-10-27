@@ -9,7 +9,7 @@ export const Posts = () => {
   const {posts} = useAppSelector(state => state.postsReducer)
   const dispatch = useAppDispatch()
     useEffect(() => {
-       dispatch(setFetchPosts(true))
+       dispatch(setFetchPosts({page: 0}))
     }, [])
     return (
         <PostsWrapper>

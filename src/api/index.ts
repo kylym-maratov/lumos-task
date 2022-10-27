@@ -29,15 +29,12 @@ axiosInstance.interceptors.response.use(
 
      if (!response.ok) {
        store.dispatch(setLoading(false))
-       store.dispatch(setFailedMessage(response.data.error))
+       store.dispatch(setFailedMessage(response.data.error || 'Internal Server Error'))
      }
 
      return Promise.reject(response);
   }
 );
-
-
-
 
 export const requestApi = (url: string, data: any = null, method: string = 'GET') => {
    return axiosInstance({url, method, data})

@@ -1,8 +1,8 @@
 
 
-export interface InitialState {
+export interface InitialStatePostsTypes {
   posts: object[],
-  fetching: boolean;
+  posts_data: {page: number} | null;
   post_id: string | null;
   post: any;
 }

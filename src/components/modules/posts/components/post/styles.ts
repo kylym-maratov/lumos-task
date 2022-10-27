@@ -62,12 +62,12 @@ export const PostContent = styled.div`
    position: relative;
   transition: all .5s;
     
-  div {
+ 
+  div[id = "content"]{
     background: black;
     max-height: 100%;
     display: flex;
     overflow: hidden;
- 
   }
   img {
     width: 100%;

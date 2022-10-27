@@ -1,6 +1,8 @@
 import React from "react";
 import {HeartAnimation} from './styles'
 
-export const HaertAnimationComp = () => {
-    <HeartAnimation>
+export const HaertAnimationComp: React.FC = () => {
+     return (
+       <HeartAnimation></HeartAnimation>
+     )
 }

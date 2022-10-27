@@ -1,16 +1,16 @@
-import {InitialState} from "./types";
+import {InitialStatePostsTypes} from "./types";
 import {postsActions} from "../../actions/posts.action";
 
 
-const initialState:InitialState = {
+export const initialStatePosts:InitialStatePostsTypes = {
     posts: [],
     post_id: null,
     post: null,
-    fetching: false
+    posts_data: null
 }
 
 
-export default  function PostsReducer (state = initialState, action: any) {
+export default  function PostsReducer (state =  initialStatePosts, action: any) {
    switch (action.type) {
      case postsActions.SET_POSTS:
        return {
@@ -21,7 +21,7 @@ export default  function PostsReducer (state = initialState, action: any) {
      case postsActions.SET_FETCHING_POSTS:
        return {
          ...state,
-          fetching: action.payload
+         posts_data: action.payload
        }
      case postsActions.SET_FETCHING_POST:
        return {

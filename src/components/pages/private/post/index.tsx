@@ -40,7 +40,7 @@ export const PostPage: React.FC = () => {
                       })}
                 </PostDetailComment> : "No comments"
                 }
-                <div>
+                <div id="input">
                   <input type="text" placeholder="Leave your comment"/>
                   <button type="button">Add</button>
                 </div>

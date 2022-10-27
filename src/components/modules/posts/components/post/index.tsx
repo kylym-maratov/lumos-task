@@ -4,20 +4,31 @@ import {AiOutlineHeart, AiFillHeart, AiOutlineComment, AiOutlineAppstoreAdd} fro
 import {BsThreeDots} from 'react-icons/bs'
 import { FcPrevious, FcNext} from 'react-icons/fc'
 import {Link} from "react-router-dom";
-import {createPoints, getCurrentDate} from "./helper";
+import {createPoints, getCurrentDate, getUserLike} from "./helper";
+import {useAppDispatch, useAppSelector} from "../../../../../store/hooks";
+import {setPostLike} from '../../../../../store/actions/posts.action'
+import {HaertAnimationComp} from "./components/like";
 
 interface Props {
   item: any,
   detail: boolean;
 }
 
+const defaultPostImage = 'https://i0.wp.com/artisansweb.net/wp-content/uploads/2018/08/Set-Default-Fallback-Image-in-WordPress.png'
+
 export const Post: React.FC<Props> = ({item, detail}) => {
+  const dispatch = useAppDispatch()
+  const [likeAnimation, setLikeAnimation] = useState<boolean>(false)
   const sliders = item.image
   const [currentSlide, setCurrentSlide] = useState<string>(item.image[0])
   const itemDate = useMemo(() => getCurrentDate(item), [item.createdAt])
   const itemPoints = useMemo(() => createPoints(currentSlide, sliders), [currentSlide, sliders])
 
   useEffect(() => {setCurrentSlide(item.image[0])}, [item.image])
+  useEffect(() => {
+    const timeout = setTimeout(() => setLikeAnimation(false), 1500)
+    return () => clearTimeout(timeout)
+  }, [likeAnimation])
 
   const nextSlide = () => {
     setCurrentSlide(sliders[sliders.indexOf(currentSlide) + 1])
@@ -42,8 +53,13 @@ export const Post: React.FC<Props> = ({item, detail}) => {
             <button type="button" onClick={() => prevSlide()} >
             <FcPrevious />
         </button>}
-        <div>
+        <div id="content" onDoubleClick={() => setLikeAnimation(true)}>
+          {likeAnimation ? <HaertAnimationComp /> : null}
+          {currentSlide && currentSlide.includes('https') ?
             <img src={currentSlide} alt={item} />
+            :
+            <img src={defaultPostImage} alt="Default post image" />
+          }
         </div>
         {
           sliders[sliders.indexOf(currentSlide) + 1] &&
@@ -55,7 +71,16 @@ export const Post: React.FC<Props> = ({item, detail}) => {
       <ContentPoints>{itemPoints}</ContentPoints>
       <PostButtons>
          <div>
-          <button type="button"><AiOutlineHeart /></button>
+            <button
+              type="button"
+              onClick={() => setLikeAnimation(true)}
+            >{
+               item && item.isLike
+                ?
+                <AiFillHeart color="red"/>
+                :
+                <AiOutlineHeart />
+            }</button>
            {!detail && <Link to={`/posts/${item._id}`}><button type="button"><AiOutlineComment /></button></Link>}
          </div>
         <div>
@@ -66,7 +91,9 @@ export const Post: React.FC<Props> = ({item, detail}) => {
         <div>
           <div id="likes">{item.likes.length ? `${item.likes.length} Likes` :  null}</div>
           <div id="desc">{item.description}</div>
-          <div id="tags">{item.tags}</div>
+          <div id="tags">{item.tags.map((item: string, i: number) => {
+              return <a href="#" style={{color: 'blue', marginLeft: '5px'}} key={i}>#{item}</a>
+          })}</div>
           <div> {
               !detail &&  item.comments.length ?
                 <Link to={`/posts/${item._id}`} >{`View ${item.comments.length} comments`}</Link>

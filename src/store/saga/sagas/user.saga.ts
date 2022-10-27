@@ -1,7 +1,7 @@
 import {call, put, takeEvery} from "redux-saga/effects";
 import {requestApi} from "../../../api";
 import {API_URLS} from "../../../constants/api";
-import {setUsername, setUserToken} from "../../actions/user.action";
+import {setUserid, setUsername, setUserToken} from "../../actions/user.action";
 import {userFetchingActions }from "../../actions/user.fetching.action";
 import { setSuccessMesssage} from "../../actions/loading.action";
 
@@ -27,8 +27,17 @@ function* fetchUserWorker({payload} : any) {
     } catch (e) {}
 }
 
+function* fetchUserInfoWorker() {
+    try {
+        const {data} = yield call(requestApi, API_URLS.userInfo)
+        yield put(setUserid(data.id))
+        yield put(setUsername(data.user))
+    } catch (e) {}
+}
+
 export function* userWatcher() {
     yield takeEvery(userFetchingActions.FETCH_SIGNUP_USER, signupUserWorker)
     yield takeEvery(userFetchingActions.FETCH_SIGNIN_USER, signinUserWorker)
     yield takeEvery(userFetchingActions.FETCH_USER, fetchUserWorker)
+    yield takeEvery(userFetchingActions.FETCH_USERINFO, fetchUserInfoWorker)
 }
