@@ -25,6 +25,4 @@ export const HeartAnimation = styled.div`
   }
 `
 
-export const DeleteMenu = () => {
-
-}
+export const DeleteMenu = styled.div``;
